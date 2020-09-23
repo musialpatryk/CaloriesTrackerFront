@@ -1,0 +1,51 @@
+nav{
+    background-color: #242038;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.container{
+    width:95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-left{
+    display: flex;
+    width:20%;
+    align-items:center;
+}
+
+.logo-container{
+    margin-right: 15px;
+}
+
+.nav-right{
+    display: flex;
+    align-items: center;
+}
+
+.nav-links{
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.user-logo{
+    margin-left: 15px;
+}
+

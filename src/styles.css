@@ -2,12 +2,19 @@
     box-sizing: border-box;
     margin:0;
     padding: 0;
+    font-family: Roboto;
 }
 
 app-root{
     display: flex;
-    align-items: center;
-    justify-content: center;
     min-width: 100vw;
     min-height: 100vh;
+}
+
+router-outlet + * {
+    display: flex;
+    min-width:100vw;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
