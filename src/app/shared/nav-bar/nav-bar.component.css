@@ -12,6 +12,7 @@ nav{
     width:95%;
     display: flex;
     justify-content: space-between;
+    max-width: 1600px;
 }
 
 .nav-left{
@@ -41,6 +42,11 @@ nav{
 }
 
 .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.user-name a{
     color: #ffffff;
     text-decoration: none;
 }

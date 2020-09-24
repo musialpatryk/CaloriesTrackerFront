@@ -1,0 +1,7 @@
+main{
+    padding-top:100px;
+    display: flex;
+    justify-content: center;
+    justify-self:center;
+    width:100%;
+}

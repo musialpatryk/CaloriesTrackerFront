@@ -8,6 +8,7 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
 import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { MainContentComponent } from './shared/main-content/main-content.component';
+import { MealComponent } from './pages/product-list-page/meal/meal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MainContentComponent } from './shared/main-content/main-content.compone
     ProductListPageComponent,
     AddProductPageComponent,
     NavBarComponent,
-    MainContentComponent
+    MainContentComponent,
+    MealComponent
   ],
   imports: [
     BrowserModule,
