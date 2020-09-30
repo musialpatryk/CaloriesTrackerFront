@@ -3,10 +3,10 @@
             <img src="assets/images/Logo-large.PNG" />
         </div>
         <div class="form-container">
-            <form>
-                <input type="text" class="input__text" placeholder="Nazwa użytkownika" />
-                <input type="password" class="input__text" placeholder="Hasło" />
-                <input type="submit" routerLink="/" class="submit-button" value="Zaloguj się"/>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <input type="text" class="input__text" placeholder="Nazwa użytkownika" formControlName="userName" />
+                <input type="password" class="input__text" placeholder="Hasło" formControlName="password" />
+                <button type="submit" class="submit-button" [disabled]="!loginForm.valid">Zaloguj się</button>
             </form>
         </div>
     </div>

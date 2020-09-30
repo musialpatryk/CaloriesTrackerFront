@@ -32,7 +32,7 @@ form{
     width: 80%;
 }
 
-input{
+input, button{
     width:100%;
     margin-top:10%;
     height:30px;
@@ -63,6 +63,7 @@ input:focus, input:active{
     color: #ffffff;
     background-color: #242038;
     border: 1px solid #ffffff;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 501px)
