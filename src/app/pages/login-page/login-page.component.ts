@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -16,20 +17,18 @@ export class LoginPageComponent implements OnInit {
     password: ['', Validators.required ]
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
-    if(this.authService.gatherJWT(this.loginForm.value.userName, this.loginForm.value.password)) {
+    if(this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)) {
       console.log('Zalogowano - przeniesienie do głownej.');
-      return
-    }
-
-    console.log('Nie zalogowano. - wyświetl komunikat.');
-    this.loginForm.reset();
-    return;
+      this.router.navigateByUrl('');
+    } else {
+      this.loginForm.reset();
+      // TODO: alert user about error in processing username and password
+    }  
   }
 
 }

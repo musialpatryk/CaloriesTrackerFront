@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
+import { LoggedInUsersGuard } from './guards/logged-in-users.guard';
 
 const routes: Routes = [
   {
@@ -11,16 +12,19 @@ const routes: Routes = [
   },
   {
     path: 'dodaj-produkt',
-    component: AddProductPageComponent
+    component: AddProductPageComponent,
+    canActivate: [LoggedInUsersGuard]
   },
   {
     path: '',
-    component: ProductListPageComponent
+    component: ProductListPageComponent,
+    canActivate: [LoggedInUsersGuard]
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [LoggedInUsersGuard]
 })
 export class AppRoutingModule { }

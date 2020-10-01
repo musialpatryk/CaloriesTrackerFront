@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,7 +14,7 @@ export class NavBarComponent implements OnInit {
     '/panel-logowania'
   ];
 
-  constructor( location: Location, router: Router ) { 
+  constructor( location: Location, router: Router, private authService: AuthenticationService ) { 
     router.events.subscribe(val => {
       this.currentPath = location.path();
     });
@@ -26,5 +27,9 @@ export class NavBarComponent implements OnInit {
       (element) => element === this.currentPath
     )) return false;
     return true;
+  }
+
+  handleLogout(){
+    this.authService.logout();
   }
 }
