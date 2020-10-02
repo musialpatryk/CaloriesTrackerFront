@@ -21,14 +21,17 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onSubmit() {
+  onSubmit(): void{
     if(this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)) {
-      console.log('Zalogowano - przeniesienie do głownej.');
       this.router.navigateByUrl('');
     } else {
       this.loginForm.reset();
-      // TODO: alert user about error in processing username and password
+      this.router.navigateByUrl('panel-logowania?message=1');
     }  
   }
 
+  isMessageVisible(): boolean{
+    if(this.router.url.split('?')[1] === 'message=1') return true;
+    return false;
+  }
 }

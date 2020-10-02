@@ -46,9 +46,13 @@ nav{
     text-decoration: none;
 }
 
-.user-name a{
+.user-name button {
+    display: inline;
+    background-color: inherit;
+    border:none;
     color: #ffffff;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .user-logo{

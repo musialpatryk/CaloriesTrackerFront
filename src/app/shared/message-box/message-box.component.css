@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.message{
+    color: #ffffff;
+    background-color: #242038;
+    opacity: 0.5;
+    width: 80%;
+    bottom:10px;
+    right: 10px;
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+}

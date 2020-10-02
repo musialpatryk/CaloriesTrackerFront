@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from "@angular/common";
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -9,27 +8,34 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  currentPath: string;
-  noNavPaths= [
+  noNavPaths: Array<string> = [
     '/panel-logowania'
   ];
+  currentUrl: string;
 
-  constructor( location: Location, router: Router, private authService: AuthenticationService ) { 
-    router.events.subscribe(val => {
-      this.currentPath = location.path();
+  constructor( private router: Router, private authService: AuthenticationService ) { }
+
+  ngOnInit(): void { 
+    this.router.events.subscribe( e => {
+      if(e instanceof NavigationEnd){
+        this.currentUrl = this.eraseParamsFromUrl(e.url);
+      }
     });
-  }
+   }
 
-  ngOnInit(): void { }
+   private eraseParamsFromUrl(url: string): string{
+    return url.split('?')[0];
+   }
 
+  /**
+   * Checks if nav should be visible on current path depending.
+   */
   isNavVisible(): Boolean{
-    if(this.noNavPaths.some(
-      (element) => element === this.currentPath
-    )) return false;
+    if(this.noNavPaths.some( element => element === this.currentUrl )) return false;
     return true;
   }
 
-  handleLogout(){
+  handleLogoutButton(){
     this.authService.logout();
   }
 }
