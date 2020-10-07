@@ -1,3 +1,6 @@
 <app-main-content>
-    <app-meal></app-meal>
+    <div>
+        <app-meal *ngFor="let meal of meals; index as mealIndex" [mealIndex]="mealIndex"></app-meal>
+        <button (click)="handleAddProduct()">Dodaj posiłek</button>
+    </div>
 </app-main-content>
