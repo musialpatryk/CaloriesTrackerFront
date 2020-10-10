@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Meal } from '../models/meal.model';
 import { Observable, Subject } from 'rxjs';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class MealsService {
   private emitMeals = new Subject<Meal[]>();
   private emitDaySum = new Subject<number>();
 
-  constructor() { 
+  constructor( private productService: ProductsService) { 
     this.meals = [
       {
         products: [
@@ -25,17 +26,26 @@ export class MealsService {
             grams: 100
           }
         ],
-        caloriesSummary: 200
+        caloriesSummary: null
       }
     ];
+    this.checkCaloriesSum();
     this.calculateCaloriesSum();
+  }
+
+  checkCaloriesSum(){
+    this.meals.forEach( (meal, index) => {
+      if(meal.caloriesSummary == null) this.calculateMealCalories(index);
+    });
   }
 
   calculateMealCalories(mealIndex){
     var summary = 0;
     this.meals[mealIndex].products.forEach(element => {
       if (element.grams == null) return;
-      summary += Number(element.grams);
+
+      const calories: number = this.productService.getProductCalories(element.name);
+      summary += (Number(element.grams) / 100) * calories;
     });
     this.meals[mealIndex].caloriesSummary = summary;
     this.calculateCaloriesSum();
@@ -96,6 +106,7 @@ export class MealsService {
 
   changeProductName(newValue, mealIndex, productIndex) {
     this.meals[mealIndex].products[productIndex].name = newValue;
+    this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
   }
 
@@ -104,6 +115,4 @@ export class MealsService {
     this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
   }
-
-  // TODO: To decide: getProducts, getProductsChanged or update products -> without subscription. 
 }

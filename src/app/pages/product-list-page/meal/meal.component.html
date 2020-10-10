@@ -3,10 +3,10 @@
         <h2>Posiłek {{mealIndex + 1}}</h2>
         <div class="products" *ngFor="let product of products;index as i">
             <div class=products-left>
-                <!-- <select class="product-name">
-                    <option value="Nazwa produktu">{{product.name}}</option>
-                </select> -->
-                <input type="text" [value]="product.name" placeholder="Nazwa produktu" (change)="handleProductNameChange($event.target.value, i)" />
+                <select class="product-name" (change)="handleProductNameChange($event.target.value, i)">
+                    <option value="{{product.name}}">{{product.name}}</option>
+                    <option *ngFor="let productName of getSelectValues(product.name)" value={{productName}}>{{productName}}</option>
+                </select>
                 
                 <input type="number" class="product-grams" placeholder="Ile gram?" [value]="product.grams" (change)="handleProductGramsChange($event.target.value, i)"/>
             </div>

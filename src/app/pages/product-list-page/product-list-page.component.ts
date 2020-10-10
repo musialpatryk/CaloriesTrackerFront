@@ -36,6 +36,7 @@ export class ProductListPageComponent implements OnInit,OnDestroy {
 
    ngOnDestroy(): void {
      this.mealsAsObservable.unsubscribe();
+     this.daySumAsObservable.unsubscribe();
    }
 
    handleAddProduct(){

@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../../../models/product.model';
 import { MealsService } from '../../../services/meals.service';
+import { ProductsService } from 'src/app/services/products.service';
  
 @Component({
   selector: 'app-meal',
@@ -14,7 +15,7 @@ export class MealComponent implements OnInit, OnDestroy {
   productsAsObservable: Subscription;
   products: Product[];
 
-  constructor( private mealService: MealsService) { }
+  constructor( private mealService: MealsService, private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.products = this.mealService.getMeals()[this.mealIndex].products;
@@ -44,6 +45,10 @@ export class MealComponent implements OnInit, OnDestroy {
 
   handleProductGramsChange(value, productIndex) {
     this.mealService.changeProductGrams(value, this.mealIndex, productIndex);
+  }
+
+  getSelectValues(omitName){
+    return this.productService.getProductsNames().filter(name => name !== omitName);
   }
 
 }
