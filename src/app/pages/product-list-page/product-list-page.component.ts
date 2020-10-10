@@ -10,7 +10,9 @@ import { MealsService } from '../../services/meals.service';
 })
 export class ProductListPageComponent implements OnInit,OnDestroy {
   meals: Meal[];
+  daySum: number;
   mealsAsObservable: Subscription;
+  daySumAsObservable: Subscription;
 
   constructor(private mealService: MealsService) { }
 
@@ -22,6 +24,14 @@ export class ProductListPageComponent implements OnInit,OnDestroy {
           this.meals = newMeals;
         }
       );
+    this.daySum = this.mealService.getDaySum();
+    this.daySumAsObservable = this.mealService.getDaySumChanged()
+      .subscribe(
+         newSum => {
+          this.daySum = newSum;
+         }
+      );
+      
    }
 
    ngOnDestroy(): void {

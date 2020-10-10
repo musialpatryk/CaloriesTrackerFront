@@ -10,6 +10,7 @@ import { MealsService } from '../../../services/meals.service';
 })
 export class MealComponent implements OnInit, OnDestroy {
   @Input() mealIndex: number;
+  @Input() mealCalories: number;
   productsAsObservable: Subscription;
   products: Product[];
 

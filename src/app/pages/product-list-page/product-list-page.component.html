@@ -1,6 +1,7 @@
 <app-main-content>
     <div>
-        <app-meal *ngFor="let meal of meals; index as mealIndex" [mealIndex]="mealIndex"></app-meal>
+        <app-meal *ngFor="let meal of meals; index as mealIndex" [mealIndex]="mealIndex" [mealCalories]="meals[mealIndex].caloriesSummary"></app-meal>
         <button (click)="handleAddProduct()">Dodaj posiłek</button>
+        <p>Suma: {{daySum}}</p>
     </div>
 </app-main-content>
