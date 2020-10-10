@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Product } from '../../../models/product.model';
 import { MealsService } from '../../../services/meals.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { AvailableProduct } from 'src/app/models/available-products.model';
  
 @Component({
   selector: 'app-meal',
@@ -13,7 +14,9 @@ export class MealComponent implements OnInit, OnDestroy {
   @Input() mealIndex: number;
   @Input() mealCalories: number;
   productsAsObservable: Subscription;
+  productSelectAsObservable: Subscription;
   products: Product[];
+  productsInSelect: string[];
 
   constructor( private mealService: MealsService, private productService: ProductsService) { }
 
@@ -25,6 +28,14 @@ export class MealComponent implements OnInit, OnDestroy {
           this.products = newMeals[this.mealIndex].products;
         }
       );
+
+    this.productsInSelect = this.productService.getProductsNames();
+    this.productSelectAsObservable = this.productService.getProductsChanged()
+      .subscribe(
+        products => {
+          this.productsInSelect = products;
+        }
+      )
    }
 
   ngOnDestroy(): void {
@@ -48,7 +59,7 @@ export class MealComponent implements OnInit, OnDestroy {
   }
 
   getSelectValues(omitName){
-    return this.productService.getProductsNames().filter(name => name !== omitName);
+    return this.productsInSelect.filter(name => name !== omitName);
   }
 
 }

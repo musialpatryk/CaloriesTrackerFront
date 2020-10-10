@@ -29,6 +29,7 @@ h2 {
 .products {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .products-left {

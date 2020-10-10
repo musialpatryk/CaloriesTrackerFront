@@ -15,17 +15,7 @@ export class MealsService {
   constructor( private productService: ProductsService) { 
     this.meals = [
       {
-        products: [
-          {
-            name: 'Kurczak',
-            grams: 100
-          },
-          
-          {
-            name: 'Kanapka',
-            grams: 100
-          }
-        ],
+        products: [ ],
         caloriesSummary: null
       }
     ];
