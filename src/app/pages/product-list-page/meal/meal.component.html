@@ -1,20 +1,21 @@
 <div class="container">
     <div class="meal">
         <h2>Posiłek {{mealIndex + 1}}</h2>
-        <div class="products">
+        <div class="products" *ngFor="let product of products;index as i">
             <div class=products-left>
-                <select class="product-name">
-                    <option value="Nazwa produktu">nazwa</option>
-                </select>
+                <!-- <select class="product-name">
+                    <option value="Nazwa produktu">{{product.name}}</option>
+                </select> -->
+                <input type="text" [value]="product.name" placeholder="Nazwa produktu" (change)="handleProductNameChange($event.target.value, i)" />
                 
-                <input type="number" class="product-grams" placeholder="Ile gram?" />
+                <input type="number" class="product-grams" placeholder="Ile gram?" [value]="product.grams" (change)="handleProductGramsChange($event.target.value, i)"/>
             </div>
             <div class="product-right">
-                <button class="remove-product"></button>
+                <button class="remove-product" (click)="handleDeleteProduct(i)"></button>
             </div>
         </div>
         <div class="meal-control">
-            <button class="add-product">Dodaj produkt</button>
+            <button class="add-product" (click)="handleAddProduct()">Dodaj produkt</button>
             <div class="meal-summary">
                 <span class="meal-summary-text">Kalorie: <span class="meal-kcal">100</span> kcal</span>
             </div>

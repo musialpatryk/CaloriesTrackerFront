@@ -45,5 +45,29 @@ export class MealsService {
     this.emitMeals.next([...this.meals]);
   }
 
-  // TODO: getProducts, getProductsChanged
+  addNewProduct(index: number){
+    const newProduct = {
+      name: '',
+      grams: null
+    }
+    this.meals[index].products.push(newProduct);
+    this.emitMeals.next([...this.meals]);
+  }
+
+  deleteProduct(mealIndex, productIndex){
+    this.meals[mealIndex].products.splice(productIndex , 1);
+    this.emitMeals.next([...this.meals]);
+  }
+
+  changeProductName(newValue, mealIndex, productIndex) {
+    this.meals[mealIndex].products[productIndex].name = newValue;
+    this.emitMeals.next([...this.meals]);
+  }
+
+  changeProductGrams(newValue, mealIndex, productIndex) {
+    this.meals[mealIndex].products[productIndex].grams = newValue;
+    this.emitMeals.next([...this.meals]);
+  }
+
+  // TODO: To decide: getProducts, getProductsChanged or update products -> without subscription. 
 }
