@@ -60,6 +60,7 @@ input, select, button {
 
 .remove-product{
     width: 35px;
+    z-index: -1;
     position: relative;
 }
 

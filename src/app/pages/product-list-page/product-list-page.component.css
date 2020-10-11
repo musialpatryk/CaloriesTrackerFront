@@ -1,8 +1,41 @@
-div{
+.container{
     display: flex;
     flex-direction: column;
 }
 
 div > *{
     margin-bottom: 30px;
+}
+
+.kcal{
+    font-weight: 600;
+}
+
+.add-new-meal{
+    height: 35px;
+    background-color: #242038;
+    color: #ffffff;
+    padding:5px;
+    max-width: 40%;
+    width:200px;
+    align-self: flex-end;
+}
+
+.kcal-sum{
+    font-size: 24px;
+}
+
+.summary-container{
+    display: flex;
+    width:95vw;
+    max-width: 1400px;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.summary-item{
+    display: flex;
+    width: auto;
+    flex-grow: 1;
+    justify-content: center;
 }

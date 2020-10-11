@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
     '/panel-logowania'
   ];
   currentUrl: string;
+  isMobileNavbarExpanded = false;
 
   constructor( private router: Router, private authService: AuthenticationService ) { }
 
@@ -38,4 +39,9 @@ export class NavBarComponent implements OnInit {
   handleLogoutButton(){
     this.authService.logout();
   }
+
+  handleExpandButton(){
+    this.isMobileNavbarExpanded = !this.isMobileNavbarExpanded;
+  }
+
 }
