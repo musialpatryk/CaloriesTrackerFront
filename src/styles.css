@@ -5,6 +5,10 @@
     font-family: Roboto;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 app-root{
     display: flex;
     min-width: 100vw;

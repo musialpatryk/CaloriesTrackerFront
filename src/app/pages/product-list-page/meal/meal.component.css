@@ -60,18 +60,15 @@ input, select, button {
 
 .remove-product{
     width: 35px;
-    z-index: -1;
-    position: relative;
+    padding: 0;
 }
 
 .remove-product::before{
     content: "";
-    position: absolute;
-    z-index: 100;
-    top:47.5%;
-    left:25%;
-    width: 50%;
-    height: 15%;
+    display: block;
+    margin-left: 10px;
+    width: 15px;
+    height: 4px;
     background-color: white;
 }
 
@@ -88,4 +85,11 @@ input, select, button {
 
 .meal-kcal{
     font-weight: 600;
+}
+
+
+@media only screen and (max-width: 700px) {
+    .meal > * {
+        width:90%;
+    }
 }

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Meal } from '../models/meal.model';
 import { Observable, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
+import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +15,42 @@ export class MealsService {
   private emitMeals = new Subject<Meal[]>();
   private emitDaySum = new Subject<number>();
 
-  constructor( private productService: ProductsService) { 
+  constructor( private productService: ProductsService, private http: HttpClient, private auth: AuthenticationService, private router: Router) { 
     this.meals = [
       {
-        products: [ ],
+        products: [
+         ],
         caloriesSummary: null
       }
     ];
-    this.checkCaloriesSum();
-    this.calculateCaloriesSum();
+    this.getMealsFromServer();
+  }
+
+  /// TODO: remove meal button; add product api; add calendar option
+  getMealsFromServer(){
+    this.http.get('/api/days/meals/', { headers: this.auth.getAuthHeaders() })
+      .subscribe( 
+      (res: Meal[]) => {
+        this.meals = res;
+        this.emitMeals.next([...res]);
+        this.checkCaloriesSum();
+        this.calculateCaloriesSum();
+      },
+      (err) => {
+        this.auth.logout();
+        this.router.navigateByUrl('panel-logowania?message=1');
+      }
+    );
+  }
+
+  pushMealsToServer(meals){
+    this.http.post('/api/days/meals/', meals , { headers: this.auth.getAuthHeaders() })
+      .subscribe(
+        ()=>{ },
+        () => {
+          console.log("Brak połączenia, dane mogą pozostać niezapisane.");
+        }
+      );
   }
 
   checkCaloriesSum(){
@@ -76,6 +106,7 @@ export class MealsService {
     };
     this.meals.push(newMeal);
     this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
   }
 
   addNewProduct(index: number){
@@ -86,23 +117,27 @@ export class MealsService {
     this.meals[index].products.push(newProduct);
     this.calculateMealCalories(index);
     this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
   }
 
   deleteProduct(mealIndex, productIndex){
     this.meals[mealIndex].products.splice(productIndex , 1);
     this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
   }
 
   changeProductName(newValue, mealIndex, productIndex) {
     this.meals[mealIndex].products[productIndex].name = newValue;
     this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
   }
 
   changeProductGrams(newValue, mealIndex, productIndex) {
     this.meals[mealIndex].products[productIndex].grams = newValue;
     this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
   }
 }

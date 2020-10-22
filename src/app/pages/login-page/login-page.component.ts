@@ -22,12 +22,17 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit(): void{
-    if(this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)) {
-      this.router.navigateByUrl('');
-    } else {
-      this.loginForm.reset();
-      this.router.navigateByUrl('panel-logowania?message=1');
-    }  
+    this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
+      .subscribe(
+        (data: {'accessToken': string}) => {
+          localStorage.setItem('token', data.accessToken);
+          this.router.navigateByUrl('');
+        },
+        (err) => {
+          this.loginForm.reset();
+          this.router.navigateByUrl('panel-logowania?message=1');
+        }
+      );
   }
 
   isMessageVisible(): boolean{

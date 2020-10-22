@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
  
 @Injectable({
   providedIn: 'root'
@@ -7,18 +9,15 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   private accessToken: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   /**
-   * Gather jwt from API and assign it in storage. If user data is invalid return false.
-   * !! Actually works with mock data! !!
+   * Pass username and password to API endpoint and return observable of this action.
    * @param Username
    * @param Password 
    */
-  login(userName: string, password: string): boolean{
-    if(userName !== 'a' && password !== 'a') return false;
-    localStorage.setItem('token', 'TESTTOKEN');
-    return true;
+  login(userName: string, password: string): Observable<object>{
+    return this.http.post('/api/users/login', { name: userName, password: password });
   }
 
   /**
@@ -27,7 +26,6 @@ export class AuthenticationService {
   logout(): void{
     localStorage.removeItem('token');
     this.router.navigateByUrl('panel-logowania?message=1');
-    
   }
 
   /**
@@ -45,5 +43,12 @@ export class AuthenticationService {
   getCurrentToken(): string | null{
     if(localStorage.getItem('token')) return localStorage.getItem('token');
     return null;
+  }
+
+  getAuthHeaders(): HttpHeaders{
+    return new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + this.getCurrentToken()
+    });
   }
 }
