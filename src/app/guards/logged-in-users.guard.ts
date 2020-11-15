@@ -16,11 +16,8 @@ export class LoggedInUsersGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-      if(!this.authService.isUserLogged()){
-        return this.router.parseUrl('panel-logowania');
-      } else {
-        return true;
-      }
+    if(!this.authService.isUserLogged()) return this.router.parseUrl('panel-logowania');
+    return true;
   }
   
 }

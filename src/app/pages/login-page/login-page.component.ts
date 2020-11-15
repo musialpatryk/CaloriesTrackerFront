@@ -36,7 +36,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   isMessageVisible(): boolean{
-    return this.router.url.split('?')[1].includes('message=')
+    if(this.router.url.split('?')[1]) return this.router.url.split('?')[1].includes('message=');
+    return false;
   }
 
   getCurrentMessage(): string{

@@ -4,11 +4,13 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { LoggedInUsersGuard } from './guards/logged-in-users.guard';
+import { LoginPageGuard } from './guards/login-page.guard';
 
 const routes: Routes = [
   {
     path: 'panel-logowania',
-    component: LoginPageComponent
+    component: LoginPageComponent,
+    canActivate: [LoginPageGuard]
   },
   {
     path: 'produkty',

@@ -18,15 +18,13 @@ export class MealsService {
   constructor( private productService: ProductsService, private http: HttpClient, private auth: AuthenticationService, private router: Router) { 
     this.meals = [
       {
-        products: [
-         ],
+        products: [],
         caloriesSummary: null
       }
     ];
     this.getMealsFromServer();
   }
 
-  /// TODO: remove meal button; add product api; add calendar option
   getMealsFromServer(){
     this.http.get('/api/days/meals/', { headers: this.auth.getAuthHeaders() })
       .subscribe( 
