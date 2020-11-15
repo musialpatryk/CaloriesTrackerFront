@@ -109,6 +109,13 @@ export class MealsService {
     this.pushMealsToServer([...this.meals]);
   }
 
+  deleteMeal(mealIndex){
+    this.meals.splice(mealIndex, 1);
+    this.calculateCaloriesSum();
+    this.emitMeals.next([...this.meals]);
+    this.pushMealsToServer([...this.meals]);
+  }
+
   addNewProduct(index: number){
     const newProduct = {
       name: '',

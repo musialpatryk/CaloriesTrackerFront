@@ -13,7 +13,6 @@ import { AvailableProduct } from 'src/app/models/available-products.model';
 export class MealComponent implements OnInit, OnDestroy {
   @Input() mealIndex: number;
   @Input() mealCalories: number;
-  productsAsObservable: Subscription;
   productSelectAsObservable: Subscription;
   products: Product[];
   productsInSelect: string[];
@@ -22,13 +21,6 @@ export class MealComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.products = this.mealService.getMeals()[this.mealIndex].products;
-    this.productsAsObservable = this.mealService.getMealsChanged()
-      .subscribe(
-        newMeals => {
-          this.products = newMeals[this.mealIndex].products;
-        }
-      );
-
     this.productsInSelect = this.productService.getProductsNames();
     this.productSelectAsObservable = this.productService.getProductsChanged()
       .subscribe(
@@ -38,9 +30,10 @@ export class MealComponent implements OnInit, OnDestroy {
       )
    }
 
-  ngOnDestroy(): void {
-     this.productsAsObservable.unsubscribe();
-  }
+   ngOnDestroy(): void {
+     this.productSelectAsObservable.unsubscribe();
+   }
+
 
   handleAddProduct(){
     this.mealService.addNewProduct(this.mealIndex);
@@ -56,6 +49,10 @@ export class MealComponent implements OnInit, OnDestroy {
 
   handleProductGramsChange(value, productIndex) {
     this.mealService.changeProductGrams(value, this.mealIndex, productIndex);
+  }
+
+  handleDeleteMeal(mealIndex){
+    this.mealService.deleteMeal(mealIndex);
   }
 
   getSelectValues(omitName){

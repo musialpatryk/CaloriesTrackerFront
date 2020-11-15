@@ -131,6 +131,7 @@ nav{
         flex-direction: column;
         justify-content: flex-start;
         overflow: auto;
+        z-index: 100;
     }
 
     .nav-links{

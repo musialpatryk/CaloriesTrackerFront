@@ -51,11 +51,13 @@ h2 {
     display: flex;
 }
 
+
 input, select, button {
     height: 35px;
     background-color: #242038;
     color: #ffffff;
-    padding:5px;
+    padding:5px;    
+    cursor: pointer;
 }
 
 .remove-product{
@@ -69,7 +71,7 @@ input, select, button {
     margin-left: 10px;
     width: 15px;
     height: 4px;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .add-product {
@@ -85,6 +87,24 @@ input, select, button {
 
 .meal-kcal{
     font-weight: 600;
+}
+
+.header{
+    justify-content: space-between;
+}
+.remove-meal{
+    width: 35px !important;
+    padding: 0;
+    background-color: #ffffff !important;
+    border: none;
+    text-align: right;
+}
+.remove-meal::before{
+    content: "\00d7";
+    color: #242038;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 30px;
 }
 
 
