@@ -25,7 +25,7 @@ export class AuthenticationService {
    */
   logout(): void{
     localStorage.removeItem('token');
-    this.router.navigateByUrl('panel-logowania?message=1');
+    this.router.navigateByUrl('panel-logowania?message=3');
   }
 
   /**

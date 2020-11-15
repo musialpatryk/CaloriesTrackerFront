@@ -30,13 +30,26 @@ export class LoginPageComponent implements OnInit {
         },
         (err) => {
           this.loginForm.reset();
-          this.router.navigateByUrl('panel-logowania?message=1');
+          this.router.navigateByUrl('panel-logowania?message=2');
         }
       );
   }
 
   isMessageVisible(): boolean{
-    if(this.router.url.split('?')[1] === 'message=1') return true;
-    return false;
+    return this.router.url.split('?')[1].includes('message=')
+  }
+
+  getCurrentMessage(): string{
+    const messageCode: number = parseInt(this.router.url.split('=')[1]); 
+    switch(messageCode){
+      case 1: 
+        return 'Zaloguj się aby kontynuować.';
+      case 2:
+        return 'Błędna nazwa użytkownika lub hasło.';
+      case 3:
+        return 'Zostałeś wylogowany!';
+      default:
+        return '';
+    }
   }
 }

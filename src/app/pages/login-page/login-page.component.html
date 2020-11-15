@@ -10,4 +10,4 @@
             </form>
         </div>
     </div>
-    <app-message-box *ngIf="isMessageVisible()">Zaloguj się aby kontynuować.</app-message-box>
+    <app-message-box *ngIf="isMessageVisible()">{{getCurrentMessage()}}</app-message-box>
