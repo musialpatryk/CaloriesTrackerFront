@@ -12,19 +12,17 @@ export class NavBarComponent implements OnInit {
     '/panel-logowania'
   ];
   currentUrl: string;
+  isMobileNavbarExpanded = false;
 
   constructor( private router: Router, private authService: AuthenticationService ) { }
 
   ngOnInit(): void { 
     this.router.events.subscribe( e => {
       if(e instanceof NavigationEnd){
-        this.currentUrl = this.eraseParamsFromUrl(e.url);
+        if(this.currentUrl != e.url && this.isMobileNavbarExpanded) this.isMobileNavbarExpanded = !this.isMobileNavbarExpanded;
+        this.currentUrl = e.url.split('?')[0];
       }
     });
-   }
-
-   private eraseParamsFromUrl(url: string): string{
-    return url.split('?')[0];
    }
 
   /**
@@ -38,4 +36,9 @@ export class NavBarComponent implements OnInit {
   handleLogoutButton(){
     this.authService.logout();
   }
+
+  handleExpandButton(){
+    this.isMobileNavbarExpanded = !this.isMobileNavbarExpanded;
+  }
+
 }

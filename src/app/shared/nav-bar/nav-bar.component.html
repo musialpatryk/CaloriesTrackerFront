@@ -1,5 +1,5 @@
 <ng-container *ngIf="isNavVisible()">
-    <nav>
+    <nav class="desktop-nav">
         <div class="container">
             <div class="nav-left">
                 <div class="logo-container"><img src="assets/images/Logo.png" /></div>
@@ -12,8 +12,30 @@
             </div>
             <div class="nav-right">
                 <div class="user-name"><button (click)="handleLogoutButton()">Wyloguj się</button></div>
-                <div class="user-logo"><img src="assets/images/User-logo.png" /></div>
             </div>
         </div>
+    </nav>
+    <nav class="mobile-nav">
+        <div class="container">
+            <div class="nav-item">
+                <button class="expand-menu-button" [ngClass]="{'expanded' : isMobileNavbarExpanded}" (click)="handleExpandButton()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </button>
+            </div>
+            <div class="nav-item">
+                <div class="logo-container"><img src="assets/images/Logo.png" /></div>               
+            </div>
+            <div class="nav-item">
+                <div class="user-name"><button (click)="handleLogoutButton()">Wyloguj się</button></div>
+            </div>
+        </div>
+        <nav class="expanded-nav" [ngClass]="{'display-none' : !isMobileNavbarExpanded}">
+            <ul class="nav-links">
+                <li><a routerLink="/" routerLinkActive="active">Licznik kalorii</a></li>
+                <li><a routerLink="/dodaj-produkt" routerLinkActive="active">Dodaj produkt</a></li>
+            </ul>
+        </nav>
     </nav>
 </ng-container>

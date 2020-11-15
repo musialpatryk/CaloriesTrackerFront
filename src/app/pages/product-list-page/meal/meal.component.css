@@ -29,6 +29,7 @@ h2 {
 .products {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .products-left {
@@ -50,27 +51,27 @@ h2 {
     display: flex;
 }
 
+
 input, select, button {
     height: 35px;
     background-color: #242038;
     color: #ffffff;
-    padding:5px;
+    padding:5px;    
+    cursor: pointer;
 }
 
 .remove-product{
     width: 35px;
-    position: relative;
+    padding: 0;
 }
 
 .remove-product::before{
     content: "";
-    position: absolute;
-    z-index: 100;
-    top:47.5%;
-    left:25%;
-    width: 50%;
-    height: 15%;
-    background-color: white;
+    display: block;
+    margin-left: 10px;
+    width: 15px;
+    height: 4px;
+    background-color: #ffffff;
 }
 
 .add-product {
@@ -86,4 +87,29 @@ input, select, button {
 
 .meal-kcal{
     font-weight: 600;
+}
+
+.header{
+    justify-content: space-between;
+}
+.remove-meal{
+    width: 35px !important;
+    padding: 0;
+    background-color: #ffffff !important;
+    border: none;
+    text-align: right;
+}
+.remove-meal::before{
+    content: "\00d7";
+    color: #242038;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+
+@media only screen and (max-width: 700px) {
+    .meal > * {
+        width:90%;
+    }
 }

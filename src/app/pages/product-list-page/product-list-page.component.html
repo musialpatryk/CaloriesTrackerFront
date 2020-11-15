@@ -1,3 +1,13 @@
 <app-main-content>
-    <app-meal></app-meal>
+    <div class="container">
+        <app-meal *ngFor="let meal of meals; index as mealIndex" [mealIndex]="mealIndex" [mealCalories]="meals[mealIndex].caloriesSummary"></app-meal>
+        <div class="summary-container">
+            <div class="summary-item">
+                <p class="kcal-sum">W ciągu całego dnia spożyto <span class="kcal">{{daySum}}</span> kcal.</p>
+            </div>
+            <div class="summary-item">
+                <button (click)="handleAddProduct()" class="add-new-meal">Dodaj posiłek</button>
+            </div>
+        </div>
+    </div>
 </app-main-content>
