@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'app-add-product-page',
-  templateUrl: './add-product-page.component.html',
-  styleUrls: ['./add-product-page.component.css']
+  selector: 'app-product-page',
+  templateUrl: './product-page.component.html',
+  styleUrls: ['./product-page.component.css']
 })
-export class AddProductPageComponent implements OnInit {
+export class ProductPageComponent implements OnInit {
   addProductForm: FormGroup;
   isMessageVisible = false;
   message: string;

@@ -16,8 +16,11 @@
     border-bottom: 1px solid #86B0AD;
 }
 
-.products, .meal-control, h2, .product-name {
+.products, .meal-control, h2 {
     width: 70%;
+}
+.product-name {
+    width: 85%;
 }
 
 .products {

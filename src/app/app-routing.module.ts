@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { LoggedInUsersGuard } from './guards/logged-in-users.guard';
@@ -11,8 +11,8 @@ const routes: Routes = [
     component: LoginPageComponent
   },
   {
-    path: 'dodaj-produkt',
-    component: AddProductPageComponent,
+    path: 'produkty',
+    component: ProductPageComponent,
     canActivate: [LoggedInUsersGuard]
   },
   {

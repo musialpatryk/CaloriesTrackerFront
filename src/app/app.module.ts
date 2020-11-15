@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
-import { AddProductPageComponent } from './pages/add-product-page/add-product-page.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { MainContentComponent } from './shared/main-content/main-content.component';
 import { MealComponent } from './pages/product-list-page/meal/meal.component';
@@ -18,7 +18,7 @@ import { MessageBoxComponent } from './shared/message-box/message-box.component'
     AppComponent,
     LoginPageComponent,
     ProductListPageComponent,
-    AddProductPageComponent,
+    ProductPageComponent,
     NavBarComponent,
     MainContentComponent,
     MealComponent,
