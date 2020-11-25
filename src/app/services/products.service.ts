@@ -19,7 +19,7 @@ export class ProductsService {
         (products: AvailableProduct[]) => {
           this.products = products;
         }
-    );
+      );
   }
 
   getProductCalories( productName ): number{
@@ -41,17 +41,26 @@ export class ProductsService {
 
   addNewProduct(name, kcal){
     const newProduct = { name, kcal };
-    this.products.push(newProduct);
     this.http.post('/api/products/', newProduct , { headers: this.auth.getAuthHeaders() })
     .subscribe(
-      ()=>{},
+      ()=>{
+        this.getProducts();
+      },
       () => {
-        console.log("Brak połączenia, dane mogą pozostać niezapisane.");
+        console.log("Wystąpił błąd, dane mogą pozostać niezapisane.");
       }
     );
   }
 
-  checkIfProductExists(name): boolean{
-    return this.products.some( product => product.name === name);
+  getProducts(){
+    this.http.get('/api/products/', { headers: this.auth.getAuthHeaders() })
+      .subscribe(
+        (products: AvailableProduct[]) => {
+          this.products = products;
+        },
+        () => {
+          console.log("Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.");
+        }
+      );
   }
 }

@@ -44,7 +44,7 @@ export class MealsService {
   pushMealsToServer(meals){
     this.http.post('/api/days/meals/', meals , { headers: this.auth.getAuthHeaders() })
       .subscribe(
-        ()=>{ },
+        ()=>{},
         () => {
           console.log("Brak połączenia, dane mogą pozostać niezapisane.");
         }

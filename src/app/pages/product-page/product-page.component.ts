@@ -25,13 +25,7 @@ export class ProductPageComponent implements OnInit {
 
   submitNewProduct(){
     this.isMessageVisible = true;
-    if(this.productService.checkIfProductExists(this.addProductForm.value.productName)) {
-      this.message = 'Produkt już istnieje!';
-      this.addProductForm.reset();
-      return false;
-    }
     this.productService.addNewProduct(this.addProductForm.value.productName, this.addProductForm.value.productKcal);
-    this.message = 'Dodano produkt!';
     return true;
   }
 }
