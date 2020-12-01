@@ -41,15 +41,7 @@ export class ProductsService {
 
   addNewProduct(name, kcal){
     const newProduct = { name, kcal };
-    this.http.post('/api/products/', newProduct , { headers: this.auth.getAuthHeaders() })
-    .subscribe(
-      ()=>{
-        this.getProducts();
-      },
-      () => {
-        console.log("Wystąpił błąd, dane mogą pozostać niezapisane.");
-      }
-    );
+    return this.http.post('/api/products/', newProduct , { headers: this.auth.getAuthHeaders() });
   }
 
   getProducts(){

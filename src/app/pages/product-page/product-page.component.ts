@@ -25,7 +25,17 @@ export class ProductPageComponent implements OnInit {
 
   submitNewProduct(){
     this.isMessageVisible = true;
-    this.productService.addNewProduct(this.addProductForm.value.productName, this.addProductForm.value.productKcal);
-    return true;
+    this.productService.addNewProduct(this.addProductForm.value.productName, this.addProductForm.value.productKcal)
+    .subscribe(
+      ()=>{
+        this.productService.getProducts();
+        this.message = "Dodano produkt!";
+      },
+      (err) => {
+        if(err.status === 406) return this.message = "Produkt już istnieje!";
+        this.message = "Wystąpił błąd, dane mogą pozostać niezapisane.";
+      }
+    );
+    this.addProductForm.reset();
   }
 }
