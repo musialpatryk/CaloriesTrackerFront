@@ -13,6 +13,7 @@ import { MainContentComponent } from './shared/main-content/main-content.compone
 import { MealComponent } from './pages/product-list-page/meal/meal.component';
 import { MessageBoxComponent } from './shared/message-box/message-box.component';
 import { AddProductComponent } from './pages/product-page/add-product/add-product.component';
+import { DeleteProductComponent } from './pages/product-page/delete-product/delete-product.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddProductComponent } from './pages/product-page/add-product/add-produc
     MainContentComponent,
     MealComponent,
     MessageBoxComponent,
-    AddProductComponent
+    AddProductComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,
