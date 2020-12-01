@@ -12,6 +12,7 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { MainContentComponent } from './shared/main-content/main-content.component';
 import { MealComponent } from './pages/product-list-page/meal/meal.component';
 import { MessageBoxComponent } from './shared/message-box/message-box.component';
+import { AddProductComponent } from './pages/product-page/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MessageBoxComponent } from './shared/message-box/message-box.component'
     NavBarComponent,
     MainContentComponent,
     MealComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

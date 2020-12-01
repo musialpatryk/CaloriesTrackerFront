@@ -1,17 +1,8 @@
     <app-main-content>
         <div class="container">
-            <form class="add-product-form" [formGroup]="addProductForm" (ngSubmit)="submitNewProduct()">
-                <h2>Dodaj produkt</h2>
-                <div class="products">
-                    <input type="text" class="product-name" placeholder="Nazwa produktu" formControlName="productName"/>
-                    <input type="text" class="product-grams" placeholder="Ile kcal?" formControlName="productKcal"/>
-                </div>
-                <div class="meal-control">
-                    <button type="submit" class="add-product" [disabled]="!addProductForm.valid">Dodaj produkt</button>
-                </div>  
-            </form>
-            <app-message-box *ngIf="isMessageVisible">
-                <p>{{message}}</p>
-            </app-message-box>
+            <app-add-product></app-add-product>
+        </div>
+        <div class="container">
+            
         </div>
     </app-main-content>
