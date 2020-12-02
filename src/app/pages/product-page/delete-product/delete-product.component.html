@@ -8,18 +8,11 @@
                 <p class="text">Usuń produkt</p>
             </div>
         </div>
-        <div class="product">
-            <div class="product-name product-info"><p class="text">Kurczak</p></div>
-            <div class="product-kcal product-info"><p class="text"><b>100</b> kcal</p></div>
+        <div class="product" *ngFor="let product of products">
+            <div class="product-name product-info"><p class="text">{{product.name}}</p></div>
+            <div class="product-kcal product-info"><p class="text"><b>{{product.kcal}}</b> kcal</p></div>
             <div class="product-remove">
-                <button class="remove-product"></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="product-name product-info"><p class="text">Kanapka</p></div>
-            <div class="product-kcal product-info"><p class="text"><b>100</b> kcal</p></div>
-            <div class="product-remove">
-                <button class="remove-product"></button>
+                <button class="remove-product" (click)="handleDeleteProduct(product.name)"></button>
             </div>
         </div>
     </div>

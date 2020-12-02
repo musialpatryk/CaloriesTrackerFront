@@ -24,16 +24,17 @@ export class AddProductComponent implements OnInit {
   }
 
   submitNewProduct(){
-    this.isMessageVisible = true;
     this.productService.addNewProduct(this.addProductForm.value.productName, this.addProductForm.value.productKcal)
     .subscribe(
       ()=>{
-        this.productService.getProducts();
+        this.productService.syncProducts();
         this.message = "Dodano produkt!";
+        this.isMessageVisible = true;
       },
       (err) => {
         if(err.status === 406) return this.message = "Produkt już istnieje!";
         this.message = "Wystąpił błąd, dane mogą pozostać niezapisane.";
+        this.isMessageVisible = true;
       }
     );
     this.addProductForm.reset();
