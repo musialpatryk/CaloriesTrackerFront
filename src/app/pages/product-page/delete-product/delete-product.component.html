@@ -1,0 +1,19 @@
+<div class="delete-product">
+    <h2>Usuń produkty</h2>
+    <div class="products">
+        <div class="product header">
+            <div class="product-name product-info header"><p class="text">Produkt</p></div>
+            <div class="product-kcal product-info header"><p class="text">Kalorie w 100g</p></div>
+            <div class="product-remove header">
+                <p class="text">Usuń produkt</p>
+            </div>
+        </div>
+        <div class="product" *ngFor="let product of products">
+            <div class="product-name product-info"><p class="text">{{product.name}}</p></div>
+            <div class="product-kcal product-info"><p class="text"><b>{{product.kcal}}</b> kcal</p></div>
+            <div class="product-remove">
+                <button class="remove-product" (click)="handleDeleteProduct(product.name)"></button>
+            </div>
+        </div>
+    </div>
+</div>

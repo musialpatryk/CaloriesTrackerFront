@@ -1,0 +1,128 @@
+.delete-product {
+    display: flex;
+    width:95vw;
+    max-width: 1200px;
+    min-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px;
+    margin-top:40px;
+}
+
+h2 {
+    width: 70%;
+    margin-bottom: 40px;
+    font-size: 34px;  
+}
+
+input, select, button {
+    height: 35px;
+    background-color: #242038;
+    color: #ffffff;
+    padding:5px;    
+    cursor: pointer;
+}
+
+.remove-product{
+    width: 35px;
+    padding: 0;
+    margin-right: 30px;
+}
+
+.remove-product::before{
+    content: "";
+    display: block;
+    margin-left: 10px;
+    width: 15px;
+    height: 4px;
+    background-color: #ffffff;
+}
+
+.products{
+    display: flex;
+    width:95vw;
+    max-width: 1200px;
+    min-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px;
+    border-bottom: 1px solid #86B0AD;
+}
+
+.products > .text {
+    font-size:16px;
+    font-weight: 600;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product {
+    width: 70%;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.product.header {
+    margin-bottom: 20px;
+}
+
+.product-name{
+    width:20%;
+    justify-content: center;
+}
+
+.product-kcal {
+    width: 20%;
+    justify-content: center;
+}
+
+.product-remove {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header > .text {
+    font-size:18px;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 700px) {
+    .header {
+        display: none;
+    }
+    h2 {
+        text-align: center;
+    }
+    .product {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .product-name .product-kcal{
+        justify-content: center;
+    }
+    .product-info {
+        width:40%;
+        margin-bottom: 10px;
+    }
+    .product-remove{
+        width: 80%;
+    }
+    .remove-product {
+        margin:0;
+        width: 100%;
+    }
+
+    .remove-product::before{
+        margin-left: 45%;
+        margin-right: 45%;
+        width: auto;
+        height: 4px;
+        background-color: #ffffff;
+    }
+}

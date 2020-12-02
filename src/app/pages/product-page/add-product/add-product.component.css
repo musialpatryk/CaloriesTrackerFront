@@ -1,0 +1,47 @@
+.add-product-form {
+    display: flex;
+    width:95vw;
+    max-width: 1200px;
+    min-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px;
+    border-bottom: 1px solid #86B0AD;
+}
+
+.products, .meal-control, h2 {
+    width: 70%;
+}
+.product-name {
+    width: 85%;
+}
+
+.products {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 34px;
+}
+
+.meal-control {
+    margin-top: 50px;
+}
+
+.product-grams {
+    width: 12.5%;
+    text-align: center;
+}
+
+input, select, button {
+    height: 35px;
+    background-color: #242038;
+    color: #ffffff;
+    padding:5px;
+}
+
+.add-product {
+    min-width:15%;
+}
