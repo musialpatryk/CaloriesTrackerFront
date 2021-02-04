@@ -12,8 +12,8 @@ export class LoginPageGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-    if(state.url == '/panel-logowania' && this.authService.isUserLogged()) return this.router.parseUrl('');  
+    if(state.url === '/panel-logowania' && this.authService.isUserLogged()) return this.router.parseUrl('');
     return true;
   }
-  
+
 }

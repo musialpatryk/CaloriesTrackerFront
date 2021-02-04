@@ -28,12 +28,12 @@ export class AddProductComponent implements OnInit {
     .subscribe(
       ()=>{
         this.productService.syncProducts();
-        this.message = "Dodano produkt!";
+        this.message = 'Dodano produkt!';
         this.isMessageVisible = true;
       },
       (err) => {
-        if(err.status === 406) return this.message = "Produkt już istnieje!";
-        this.message = "Wystąpił błąd, dane mogą pozostać niezapisane.";
+        if(err.status === 406) return this.message = 'Produkt już istnieje!';
+        this.message = 'Wystąpił błąd, dane mogą pozostać niezapisane.';
         this.isMessageVisible = true;
       }
     );

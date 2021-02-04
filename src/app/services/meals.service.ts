@@ -15,7 +15,10 @@ export class MealsService {
   private emitMeals = new Subject<Meal[]>();
   private emitDaySum = new Subject<number>();
 
-  constructor( private productService: ProductsService, private http: HttpClient, private auth: AuthenticationService, private router: Router) { 
+  constructor( private productService: ProductsService,
+               private http: HttpClient,
+               private auth: AuthenticationService,
+               private router: Router) {
     this.meals = [
       {
         products: [],
@@ -27,7 +30,7 @@ export class MealsService {
 
   getMealsFromServer(){
     this.http.get('/api/days/meals/', { headers: this.auth.getAuthHeaders() })
-      .subscribe( 
+      .subscribe(
       (res: Meal[]) => {
         this.meals = res;
         this.emitMeals.next([...res]);
@@ -46,7 +49,7 @@ export class MealsService {
       .subscribe(
         ()=>{},
         () => {
-          console.log("Brak połączenia, dane mogą pozostać niezapisane.");
+          console.log('Brak połączenia, dane mogą pozostać niezapisane.');
         }
       );
   }
@@ -58,7 +61,7 @@ export class MealsService {
   }
 
   calculateMealCalories(mealIndex){
-    var summary = 0;
+    let summary = 0;
     this.meals[mealIndex].products.forEach(element => {
       if (element.grams == null) return;
 
@@ -70,7 +73,7 @@ export class MealsService {
   }
 
   calculateCaloriesSum(){
-    var summary = 0;
+    let summary = 0;
     this.meals.forEach(element => {
       if (element.caloriesSummary == null) return;
       summary += Number(element.caloriesSummary);
@@ -118,7 +121,7 @@ export class MealsService {
     const newProduct = {
       name: '',
       grams: null
-    }
+    };
     this.meals[index].products.push(newProduct);
     this.calculateMealCalories(index);
     this.emitMeals.next([...this.meals]);

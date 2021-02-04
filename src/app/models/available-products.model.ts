@@ -1,4 +1,4 @@
 export interface AvailableProduct{
-    name: string,
-    kcal: number
+    name: string;
+    kcal: number;
  }

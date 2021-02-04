@@ -31,7 +31,7 @@ export class ProductListPageComponent implements OnInit,OnDestroy {
           this.daySum = newSum;
          }
       );
-      
+
    }
 
    ngOnDestroy(): void {

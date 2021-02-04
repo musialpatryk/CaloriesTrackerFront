@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Product } from '../../../models/product.model';
 import { MealsService } from '../../../services/meals.service';
 import { ProductsService } from 'src/app/services/products.service';
- 
+
 @Component({
   selector: 'app-meal',
   templateUrl: './meal.component.html',

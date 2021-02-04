@@ -25,9 +25,7 @@ export class ProductsService {
   }
 
   getProductsNames(): string[]{
-    return this.products.map( product => {
-      return product.name;
-    });
+    return this.products.map( product => product.name);
   }
 
   getProductsNamesChanged(): Observable<string[]>{
@@ -51,7 +49,7 @@ export class ProductsService {
           this.emitProducts.next([...this.products]);
         },
         () => {
-          console.log("Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.");
+          console.log('Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.');
         }
       );
   }
@@ -68,7 +66,7 @@ export class ProductsService {
           this.emitProducts.next([...this.products]);
         },
         () => {
-          console.log("Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.");
+          console.log('Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.');
         }
     );
   }

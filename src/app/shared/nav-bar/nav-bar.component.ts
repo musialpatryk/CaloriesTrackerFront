@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from "@angular/router";
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -16,10 +16,10 @@ export class NavBarComponent implements OnInit {
 
   constructor( private router: Router, private authService: AuthenticationService ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.router.events.subscribe( e => {
       if(e instanceof NavigationEnd){
-        if(this.currentUrl != e.url && this.isMobileNavbarExpanded) this.isMobileNavbarExpanded = !this.isMobileNavbarExpanded;
+        if(this.currentUrl !== e.url && this.isMobileNavbarExpanded) this.isMobileNavbarExpanded = !this.isMobileNavbarExpanded;
         this.currentUrl = e.url.split('?')[0];
       }
     });
@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit {
   /**
    * Checks if nav should be visible on current path depending.
    */
-  isNavVisible(): Boolean{
+  isNavVisible(): boolean{
     if(this.noNavPaths.some( element => element === this.currentUrl )) return false;
     return true;
   }

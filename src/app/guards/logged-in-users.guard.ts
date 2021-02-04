@@ -19,5 +19,5 @@ export class LoggedInUsersGuard implements CanActivate {
     if(!this.authService.isUserLogged()) return this.router.parseUrl('panel-logowania');
     return true;
   }
-  
+
 }

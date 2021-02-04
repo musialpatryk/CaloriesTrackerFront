@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
- 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,11 +13,12 @@ export class AuthenticationService {
 
   /**
    * Pass username and password to API endpoint and return observable of this action.
+   *
    * @param Username
-   * @param Password 
+   * @param Password
    */
-  login(userName: string, password: string): Observable<object>{
-    return this.http.post('/api/users/login', { name: userName, password: password });
+  login(userName: string, password: string): Observable<Record<string, any>>{
+    return this.http.post('/api/users/login', { name: userName, password });
   }
 
   /**
@@ -37,7 +38,7 @@ export class AuthenticationService {
   }
 
   /**
-   * Get token from local storage and return it. 
+   * Get token from local storage and return it.
    * If no token available, null returned.
    */
   getCurrentToken(): string | null{
@@ -47,8 +48,8 @@ export class AuthenticationService {
 
   getAuthHeaders(): HttpHeaders{
     return new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + this.getCurrentToken()
+      'content-type': 'application/json',
+      authorization: 'Bearer ' + this.getCurrentToken()
     });
   }
 }

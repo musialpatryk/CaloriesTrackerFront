@@ -6,10 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css'],
-  host: {
-    class:'app-login-page'
-  }
+  styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
   loginForm = this.fb.group({
@@ -41,9 +38,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   getCurrentMessage(): string{
-    const messageCode: number = parseInt(this.router.url.split('=')[1]); 
+    const messageCode: number = parseInt(this.router.url.split('=')[1]);
     switch(messageCode){
-      case 1: 
+      case 1:
         return 'Zaloguj się aby kontynuować.';
       case 2:
         return 'Błędna nazwa użytkownika lub hasło.';
