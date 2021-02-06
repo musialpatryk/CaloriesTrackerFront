@@ -27,9 +27,6 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  /**
-   * Checks if nav should be visible on current path depending.
-   */
   isNavVisible(): boolean {
     if (this.noNavPaths.some((element) => element === this.currentUrl))
       return false;
