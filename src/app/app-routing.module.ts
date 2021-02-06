@@ -10,23 +10,23 @@ const routes: Routes = [
   {
     path: 'panel-logowania',
     component: LoginPageComponent,
-    canActivate: [LoginPageGuard]
+    canActivate: [LoginPageGuard],
   },
   {
     path: 'produkty',
     component: ProductPageComponent,
-    canActivate: [LoggedInUsersGuard]
+    canActivate: [LoggedInUsersGuard],
   },
   {
     path: '',
     component: ProductListPageComponent,
-    canActivate: [LoggedInUsersGuard]
-  }
+    canActivate: [LoggedInUsersGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
-  providers: [LoggedInUsersGuard]
+  providers: [LoggedInUsersGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

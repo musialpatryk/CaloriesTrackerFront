@@ -26,15 +26,15 @@ import { DeleteProductComponent } from './pages/product-page/delete-product/dele
     MealComponent,
     MessageBoxComponent,
     AddProductComponent,
-    DeleteProductComponent
+    DeleteProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

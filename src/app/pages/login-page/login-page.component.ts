@@ -6,22 +6,27 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
   loginForm = this.fb.group({
-    userName: ['', Validators.required ],
-    password: ['', Validators.required ]
+    userName: ['', Validators.required],
+    password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  onSubmit(): void{
-    this.authService.login(this.loginForm.value.userName, this.loginForm.value.password)
+  onSubmit(): void {
+    this.authService
+      .login(this.loginForm.value.userName, this.loginForm.value.password)
       .subscribe(
-        (data: {'accessToken': string}) => {
+        (data: { accessToken: string }) => {
           localStorage.setItem('token', data.accessToken);
           this.router.navigateByUrl('');
         },
@@ -32,14 +37,15 @@ export class LoginPageComponent implements OnInit {
       );
   }
 
-  isMessageVisible(): boolean{
-    if(this.router.url.split('?')[1]) return this.router.url.split('?')[1].includes('message=');
+  isMessageVisible(): boolean {
+    if (this.router.url.split('?')[1])
+      return this.router.url.split('?')[1].includes('message=');
     return false;
   }
 
-  getCurrentMessage(): string{
+  getCurrentMessage(): string {
     const messageCode: number = parseInt(this.router.url.split('=')[1]);
-    switch(messageCode){
+    switch (messageCode) {
       case 1:
         return 'Zaloguj się aby kontynuować.';
       case 2:

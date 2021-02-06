@@ -7,7 +7,7 @@ import { AuthenticationService } from './authentication.service';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MealsService {
   private meals: Meal[];
@@ -15,66 +15,72 @@ export class MealsService {
   private emitMeals = new Subject<Meal[]>();
   private emitDaySum = new Subject<number>();
 
-  constructor( private productService: ProductsService,
-               private http: HttpClient,
-               private auth: AuthenticationService,
-               private router: Router) {
+  constructor(
+    private productService: ProductsService,
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {
     this.meals = [
       {
         products: [],
-        caloriesSummary: null
-      }
+        caloriesSummary: null,
+      },
     ];
     this.getMealsFromServer();
   }
 
-  getMealsFromServer(){
-    this.http.get('/api/days/meals/', { headers: this.auth.getAuthHeaders() })
+  getMealsFromServer() {
+    this.http
+      .get('/api/days/meals/', { headers: this.auth.getAuthHeaders() })
       .subscribe(
-      (res: Meal[]) => {
-        this.meals = res;
-        this.emitMeals.next([...res]);
-        this.checkCaloriesSum();
-        this.calculateCaloriesSum();
-      },
-      (err) => {
-        this.auth.logout();
-        this.router.navigateByUrl('panel-logowania?message=1');
-      }
-    );
+        (res: Meal[]) => {
+          this.meals = res;
+          this.emitMeals.next([...res]);
+          this.checkCaloriesSum();
+          this.calculateCaloriesSum();
+        },
+        (err) => {
+          this.auth.logout();
+          this.router.navigateByUrl('panel-logowania?message=1');
+        }
+      );
   }
 
-  pushMealsToServer(meals){
-    this.http.post('/api/days/meals/', meals , { headers: this.auth.getAuthHeaders() })
+  pushMealsToServer(meals) {
+    this.http
+      .post('/api/days/meals/', meals, { headers: this.auth.getAuthHeaders() })
       .subscribe(
-        ()=>{},
+        () => {},
         () => {
           console.log('Brak połączenia, dane mogą pozostać niezapisane.');
         }
       );
   }
 
-  checkCaloriesSum(){
-    this.meals.forEach( (meal, index) => {
-      if(meal.caloriesSummary == null) this.calculateMealCalories(index);
+  checkCaloriesSum() {
+    this.meals.forEach((meal, index) => {
+      if (meal.caloriesSummary == null) this.calculateMealCalories(index);
     });
   }
 
-  calculateMealCalories(mealIndex){
+  calculateMealCalories(mealIndex) {
     let summary = 0;
-    this.meals[mealIndex].products.forEach(element => {
+    this.meals[mealIndex].products.forEach((element) => {
       if (element.grams == null) return;
 
-      const calories: number = this.productService.getProductCalories(element.name);
+      const calories: number = this.productService.getProductCalories(
+        element.name
+      );
       summary += (Number(element.grams) / 100) * calories;
     });
     this.meals[mealIndex].caloriesSummary = summary;
     this.calculateCaloriesSum();
   }
 
-  calculateCaloriesSum(){
+  calculateCaloriesSum() {
     let summary = 0;
-    this.meals.forEach(element => {
+    this.meals.forEach((element) => {
       if (element.caloriesSummary == null) return;
       summary += Number(element.caloriesSummary);
     });
@@ -82,45 +88,43 @@ export class MealsService {
     this.emitDaySum.next(this.daySum);
   }
 
-  getDaySum(){
+  getDaySum() {
     return this.daySum;
   }
 
-  getDaySumChanged(): Observable<number>{
+  getDaySumChanged(): Observable<number> {
     return this.emitDaySum.asObservable();
   }
 
-  getMeals(): Meal[]{
+  getMeals(): Meal[] {
     return [...this.meals];
   }
 
-  getMealsChanged(): Observable<Meal[]>{
+  getMealsChanged(): Observable<Meal[]> {
     return this.emitMeals.asObservable();
   }
 
-  addNewMeal(){
+  addNewMeal() {
     const newMeal: Meal = {
-      products: [
-
-      ],
-      caloriesSummary: 0
+      products: [],
+      caloriesSummary: 0,
     };
     this.meals.push(newMeal);
     this.emitMeals.next([...this.meals]);
     this.pushMealsToServer([...this.meals]);
   }
 
-  deleteMeal(mealIndex){
+  deleteMeal(mealIndex) {
     this.meals.splice(mealIndex, 1);
     this.calculateCaloriesSum();
     this.emitMeals.next([...this.meals]);
     this.pushMealsToServer([...this.meals]);
   }
 
-  addNewProduct(index: number){
+  addNewProduct(index: number) {
     const newProduct = {
       name: '',
-      grams: null
+      grams: null,
     };
     this.meals[index].products.push(newProduct);
     this.calculateMealCalories(index);
@@ -128,8 +132,8 @@ export class MealsService {
     this.pushMealsToServer([...this.meals]);
   }
 
-  deleteProduct(mealIndex, productIndex){
-    this.meals[mealIndex].products.splice(productIndex , 1);
+  deleteProduct(mealIndex, productIndex) {
+    this.meals[mealIndex].products.splice(productIndex, 1);
     this.calculateMealCalories(mealIndex);
     this.emitMeals.next([...this.meals]);
     this.pushMealsToServer([...this.meals]);

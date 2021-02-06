@@ -1,4 +1,4 @@
-export interface AvailableProduct{
-    name: string;
-    kcal: number;
- }
+export interface AvailableProduct {
+  name: string;
+  kcal: number;
+}

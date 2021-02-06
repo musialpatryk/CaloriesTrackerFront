@@ -5,7 +5,7 @@ import { AvailableProduct } from 'src/app/models/available-products.model';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   private products: AvailableProduct[];
@@ -17,57 +17,67 @@ export class ProductsService {
     this.syncProducts();
   }
 
-  getProductCalories( productName ): number{
-    if(productName == null || productName === '') return 0;
-    const productKcal = this.products.find( product => product.name === productName).kcal;
-    if( productKcal == null) return 0;
+  getProductCalories(productName): number {
+    if (productName == null || productName === '') return 0;
+    const productKcal = this.products.find(
+      (product) => product.name === productName
+    ).kcal;
+    if (productKcal == null) return 0;
     return productKcal;
   }
 
-  getProductsNames(): string[]{
-    return this.products.map( product => product.name);
+  getProductsNames(): string[] {
+    return this.products.map((product) => product.name);
   }
 
-  getProductsNamesChanged(): Observable<string[]>{
+  getProductsNamesChanged(): Observable<string[]> {
     return this.emitProductsNames.asObservable();
   }
 
-  getProductsChanged(): Observable<AvailableProduct[]>{
+  getProductsChanged(): Observable<AvailableProduct[]> {
     return this.emitProducts.asObservable();
   }
 
-  addNewProduct(name, kcal){
+  addNewProduct(name, kcal) {
     const newProduct = { name, kcal };
-    return this.http.post('/api/products/', newProduct , { headers: this.auth.getAuthHeaders() });
+    return this.http.post('/api/products/', newProduct, {
+      headers: this.auth.getAuthHeaders(),
+    });
   }
 
-  syncProducts(){
-    this.http.get('/api/products/', { headers: this.auth.getAuthHeaders() })
+  syncProducts() {
+    this.http
+      .get('/api/products/', { headers: this.auth.getAuthHeaders() })
       .subscribe(
         (products: AvailableProduct[]) => {
           this.products = products;
           this.emitProducts.next([...this.products]);
         },
         () => {
-          console.log('Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.');
+          console.log(
+            'Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.'
+          );
         }
       );
   }
 
-  getProducts(): AvailableProduct[]{
+  getProducts(): AvailableProduct[] {
     return this.products;
   }
 
-  deleteProduct(name: string){
-    this.http.delete(`/api/products/${name}`, { headers: this.auth.getAuthHeaders() })
+  deleteProduct(name: string) {
+    this.http
+      .delete(`/api/products/${name}`, { headers: this.auth.getAuthHeaders() })
       .subscribe(
         (products: AvailableProduct[]) => {
           this.products = products;
           this.emitProducts.next([...this.products]);
         },
         () => {
-          console.log('Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.');
+          console.log(
+            'Brak połączenia z bazą danych, zmiany mogę pozostać niezapisane.'
+          );
         }
-    );
+      );
   }
 }

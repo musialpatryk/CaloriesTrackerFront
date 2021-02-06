@@ -6,30 +6,28 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-delete-product',
   templateUrl: './delete-product.component.html',
-  styleUrls: ['./delete-product.component.css']
+  styleUrls: ['./delete-product.component.css'],
 })
 export class DeleteProductComponent implements OnInit, OnDestroy {
   products: AvailableProduct[];
   productsAsObservable: Subscription;
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
-    this.productsAsObservable = this.productService.getProductsChanged()
-      .subscribe(
-        (products: AvailableProduct[]) => {
-          this.products = products;
-        }
-      );
+    this.productsAsObservable = this.productService
+      .getProductsChanged()
+      .subscribe((products: AvailableProduct[]) => {
+        this.products = products;
+      });
   }
 
   ngOnDestroy(): void {
     this.productsAsObservable.unsubscribe();
   }
 
-  handleDeleteProduct(name){
+  handleDeleteProduct(name) {
     this.productService.deleteProduct(name);
   }
-
 }

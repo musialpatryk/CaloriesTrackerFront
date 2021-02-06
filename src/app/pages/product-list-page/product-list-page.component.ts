@@ -6,41 +6,37 @@ import { MealsService } from '../../services/meals.service';
 @Component({
   selector: 'app-product-list-page',
   templateUrl: './product-list-page.component.html',
-  styleUrls: ['./product-list-page.component.css']
+  styleUrls: ['./product-list-page.component.css'],
 })
-export class ProductListPageComponent implements OnInit,OnDestroy {
+export class ProductListPageComponent implements OnInit, OnDestroy {
   meals: Meal[];
   daySum: number;
   mealsAsObservable: Subscription;
   daySumAsObservable: Subscription;
 
-  constructor(private mealService: MealsService) { }
+  constructor(private mealService: MealsService) {}
 
   ngOnInit(): void {
     this.meals = this.mealService.getMeals();
-    this.mealsAsObservable = this.mealService.getMealsChanged()
-      .subscribe(
-        newMeals => {
-          this.meals = newMeals;
-        }
-      );
+    this.mealsAsObservable = this.mealService
+      .getMealsChanged()
+      .subscribe((newMeals) => {
+        this.meals = newMeals;
+      });
     this.daySum = this.mealService.getDaySum();
-    this.daySumAsObservable = this.mealService.getDaySumChanged()
-      .subscribe(
-         newSum => {
-          this.daySum = newSum;
-         }
-      );
+    this.daySumAsObservable = this.mealService
+      .getDaySumChanged()
+      .subscribe((newSum) => {
+        this.daySum = newSum;
+      });
+  }
 
-   }
+  ngOnDestroy(): void {
+    this.mealsAsObservable.unsubscribe();
+    this.daySumAsObservable.unsubscribe();
+  }
 
-   ngOnDestroy(): void {
-     this.mealsAsObservable.unsubscribe();
-     this.daySumAsObservable.unsubscribe();
-   }
-
-   handleAddProduct(){
-     this.mealService.addNewMeal();
-   }
-
+  handleAddProduct() {
+    this.mealService.addNewMeal();
+  }
 }

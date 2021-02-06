@@ -6,12 +6,13 @@ describe('DeleteProductComponent', () => {
   let component: DeleteProductComponent;
   let fixture: ComponentFixture<DeleteProductComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DeleteProductComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DeleteProductComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DeleteProductComponent);
