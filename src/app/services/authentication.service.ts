@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private accessToken: string;
-
   constructor(private router: Router, private http: HttpClient) {}
 
   login(userName: string, password: string): Observable<Record<string, any>> {

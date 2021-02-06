@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { AvailableProduct } from 'src/app/models/available-products.model';
+import { AvailableProduct } from 'src/app/models/available-product.model';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
