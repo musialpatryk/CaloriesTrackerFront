@@ -2,6 +2,8 @@
 
 Calories tracker is web app created to calculate calories you are eating through the day. App calculate calories based on products information that user provide. Each user can keep his own list of product that he use on everyday basis.
 
+Developer version of this app is [hosted here](https://patrykmusial.pl/) on VPS using docker-compose.
+
 ## Technologies
 
 - Angular 11,
@@ -63,6 +65,6 @@ user | p@ssword
 ## Planed features
 
 - Save day meals and calculations in form of dates in calendar,
-- "Calendar" tab with month view displaying calories on each day provided,
+- "Calendar" tab with month view displaying calories on each day,
 - registration panel,
 - PWA support.
