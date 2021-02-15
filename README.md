@@ -2,6 +2,12 @@
 
 Calories tracker is web app created to calculate calories you are eating through the day. App calculate calories based on products information that user provide. Each user can keep his own list of product that he use on everyday basis.
 
+## Technologies
+
+- Angular 11,
+- RxJS,
+- JSON Web Tokens.
+
 ## How to start project locally?
 
 ### Requirements
@@ -26,7 +32,7 @@ npm run start-api
 
 ## How to use application?
 
-### Loggin in
+### Logging in
 
 Currently app is in "work in progress" mode so there is no registration page. To test app you can use predefined test user:
 **Login** | **Password**
